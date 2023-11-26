@@ -193,7 +193,7 @@ def main(args):
 
 #   main
 #-------------------------------------------------------------------------------
-if __name__ == '__main__':
+def run_main():
 
     from argparse import ArgumentParser
 
@@ -212,7 +212,11 @@ if __name__ == '__main__':
     ap.add_argument('--cmd2', type=int, default=CMD_HDR2, help='second byte in the data written to the LH [%(default)s]')
     ap.add_argument('-v', '--verbose', action='count', default=0, help='increase verbosity of the log to stdout')
 
+    global args
     args = ap.parse_args()
     argsCheck(args)
     argsProcess(args)
-    main(args)
+    return main(args)
+
+if __name__ == '__main__':
+    sys.exit(run_main())
